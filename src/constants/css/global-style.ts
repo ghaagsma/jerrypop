@@ -28,6 +28,7 @@ body {
   --color-background: ${WHITE};
   --color-foreground: ${THEME_NAVY};
   --color-theme-background: var(--main-theme-dark);
+  --color-theme-background-alt: var(--main-theme-medium);
   --icon-hover-background: ${ICON_HOVER_BACKGROUND};
   --image-filter: none;
 

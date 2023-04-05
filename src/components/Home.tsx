@@ -13,8 +13,10 @@ import {
   FOOTER_TOP_MARGIN_PX,
   WINDOW_BREAKPOINT_WIDTH_PX,
 } from '../constants/breakpoint';
+import ResponsiveIframe from './ResponsiveIframe';
 import { Link } from 'react-router-dom';
 import { BUTTON_STYLE } from '../constants/css/button';
+import WaveBackground from './WaveBackground';
 
 const StyledHome = styled.div`
   align-items: center;
@@ -23,29 +25,44 @@ const StyledHome = styled.div`
   text-align: center;
 `;
 
-const StyledRegularSection = styled.section`
+const StyledWaveBackgroundContainer = styled.div`
+  width: 100%;
+`;
+
+const StyledTaglineSection = styled.section`
   align-items: center;
   display: flex;
-  height: 314px;
-  flex-direction: column;
-  justify-content: center;
-  margin: ${FOOTER_TOP_MARGIN_PX}px 0 0;
+  justify-content: space-around;
+  margin: 0 0 -${FOOTER_TOP_MARGIN_PX}px;
+  padding: 96px 0;
   width: 100%;
 
   @media (max-width: ${WINDOW_BREAKPOINT_WIDTH_PX}px) {
-    height: 157px;
+    padding: 56px 0;
   }
+`;
+
+const StyledTaglineContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 36px;
 `;
 
 const StyledTagline = styled(Typography)`
   font-size: 18px;
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   max-width: 600px;
   padding: 0 24px;
 `;
 
 const StyledCallToActionLink = styled(Link)`
   ${BUTTON_STYLE}
+`;
+
+const StyledVideoContainer = styled.div`
+  margin: 0 36px;
 `;
 
 const Home: React.FC = () => {
@@ -62,12 +79,31 @@ const Home: React.FC = () => {
           fallbackSrcSet={`${HabaneroRanch600} 600w, ${HabaneroRanch1200} 1200w, ${HabaneroRanch2400} 2400w`}
           srcSet={`${HabaneroRanchWebp600} 600w, ${HabaneroRanchWebp1200} 1200w, ${HabaneroRanchWebp2400} 2400w`}
         />
-        <StyledRegularSection>
-          <StyledTagline type="h1">
-            Locally handcrafted San Francisco popcorn.
-          </StyledTagline>
-          <StyledCallToActionLink to="/order">Order</StyledCallToActionLink>
-        </StyledRegularSection>
+        <StyledWaveBackgroundContainer>
+          <WaveBackground
+            backgroundColor="var(--color-background)"
+            color="var(--color-theme-background-alt)"
+            heightPx={461}
+          />
+        </StyledWaveBackgroundContainer>
+        <StyledTaglineSection>
+          <StyledTaglineContainer>
+            <StyledTagline type="h1">
+              Locally handcrafted San Francisco popcorn.
+            </StyledTagline>
+            <StyledCallToActionLink to="/order">Order</StyledCallToActionLink>
+          </StyledTaglineContainer>
+          <StyledVideoContainer>
+            <ResponsiveIframe
+              allowFullScreen
+              defaultHeightPx={221}
+              defaultWidthPx={390}
+              loading="lazy"
+              src="https://abc7news.com/video/embed/?pid=13037479"
+              title="Jerrypop in San Francisco produces fun, zany popcorn"
+            />
+          </StyledVideoContainer>
+        </StyledTaglineSection>
       </StyledHome>
     </>
   );
